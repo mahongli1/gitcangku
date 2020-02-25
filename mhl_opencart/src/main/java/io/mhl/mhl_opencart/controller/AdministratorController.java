@@ -6,6 +6,8 @@ import io.mhl.mhl_opencart.dto.out.AdministratorListOutDTO;
 import io.mhl.mhl_opencart.dto.out.PageOutDTO;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/administrator")
 public class AdministratorController {
@@ -41,23 +43,23 @@ public class AdministratorController {
 
     }
 
-    @GetMapping("/sendPasswordResetCodeToEmail")
-    public void sendPasswordResetCodeToEmail(@RequestParam String email){
+    @GetMapping("/getPwdResetCode")
+    public void getPwdResetCode(@RequestParam String email){
 
     }
 
-    @PostMapping("/resetPassword")
-    public void resetPasswordByEmail(@RequestBody AdministratorResetPwdEmailInDTO administratorResetPwdEmailInDTO){
+    @PostMapping("/resetPwd")
+    public void resetPwd(@RequestBody AdministratorResetPwdEmailInDTO administratorResetPwdEmailInDTO){
 
     }
 
-    @GetMapping("/sendPasswordResetCodeToMobile")
-    public void sendPasswordResetCodeToMobile(@RequestParam String mobile){
+    @PostMapping("/delete")
+    public void delete(@RequestParam Integer administratorId){
 
     }
 
-    @PostMapping("/resetPassword")
-    public void resetPasswordByMobile(@RequestBody AdministratorResetPwdMobileInDTO administratorResetPwdMobileInDTO){
+    @PostMapping("/batchDelete")
+    public void batchDelete(@RequestBody List<Integer> administratorIds){
 
     }
 

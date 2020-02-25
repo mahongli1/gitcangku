@@ -1,42 +1,40 @@
 package io.mhl.mhl_opencart.controller;
 
 
+import io.mhl.mhl_opencart.dto.in.OrderSearchInDTO;
+import io.mhl.mhl_opencart.dto.out.OrderInvoiceShowOutDTO;
 import io.mhl.mhl_opencart.dto.out.OrderListOutDTO;
+import io.mhl.mhl_opencart.dto.out.OrderShipShowOutDTO;
 import io.mhl.mhl_opencart.dto.out.PageOutDTO;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/order")
 public class OrderController {
 
     @GetMapping("/search")
-    public PageOutDTO<OrderListOutDTO> search(@RequestParam(required = false) String customer_name,
-                                              @RequestParam(required = false) Byte status,
-                                              @RequestParam(required = false) Double total_price,
-                                              @RequestParam(required = false) Integer reword_points ,
-                                              @RequestParam(required = false) Long create_time,
-                                              @RequestParam(required = false, defaultValue = "1") Integer pageNum){
+    public PageOutDTO<OrderListOutDTO> search(OrderSearchInDTO orderSearchInDTO,
+                                              @RequestParam Integer pageNum){
         return null;
     }
 
     @GetMapping("/getById")
-    public OrderListOutDTO getById(@RequestParam Integer order_id){
+    public OrderListOutDTO getById(@RequestParam Integer orderId){
         return null;
 
     }
 
-    @GetMapping("/getByCustomersId")
-    public OrderListOutDTO getByCustomersId(@RequestParam Integer customers_id){
+    @GetMapping("/getInvoice")
+    public OrderInvoiceShowOutDTO getInvoice(@RequestParam Long OrderId){
         return null;
     }
 
-    @PostMapping("/create")
-    public OrderListOutDTO create(@RequestBody OrderListOutDTO orderListOutDTO){
-        return null;
-    }
 
-    @PostMapping("/update")
-    public OrderListOutDTO update(@RequestBody OrderListOutDTO orderListOutDTO){
+    @GetMapping("/getShipInfo")
+    public OrderShipShowOutDTO getShipInfo(@RequestParam Long OrderId){
         return null;
     }
 }

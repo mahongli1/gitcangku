@@ -1,6 +1,7 @@
 package io.mhl.mhl_opencart.controller;
 
 import io.mhl.mhl_opencart.dto.in.ProductCreateInDTO;
+import io.mhl.mhl_opencart.dto.in.ProductSearchInDTO;
 import io.mhl.mhl_opencart.dto.in.ProductUpdateInDTO;
 import io.mhl.mhl_opencart.dto.out.PageOutDTO;
 import io.mhl.mhl_opencart.dto.out.ProductListOutDTO;
@@ -12,10 +13,8 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     @GetMapping("/search")
-    public PageOutDTO<ProductListOutDTO> search(@RequestParam(required = false) String productCode,
-                                                @RequestParam(required = false) String productName,
-                                                @RequestParam(required = false) Byte status,
-                                                @RequestParam(required = false,defaultValue = "1") Integer PageNum){
+    public PageOutDTO<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO,
+                                                @RequestParam Integer pageNum){
         return null;
     }
 

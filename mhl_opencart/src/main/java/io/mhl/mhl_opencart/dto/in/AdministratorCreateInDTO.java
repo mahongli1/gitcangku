@@ -3,7 +3,7 @@ package io.mhl.mhl_opencart.dto.in;
 public class AdministratorCreateInDTO {
     private String username;
     private String realName;
-    private String mobile;
+
     private String email;
     private String avatarUrl;
     private String password;
@@ -25,13 +25,6 @@ public class AdministratorCreateInDTO {
         this.realName = realName;
     }
 
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
 
     public String getEmail() {
         return email;
