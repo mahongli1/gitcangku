@@ -39,7 +39,13 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\abc\dayi\mhl_opencart-store\src\main\resources" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -53,6 +59,15 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="MhlOpencartStoreApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="mhl_opencart-store" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="io.mhl.MhlOpencartStoreApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -63,7 +78,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1582625501375</updated>
-      <workItem from="1582625507091" duration="762000" />
+      <workItem from="1582625507091" duration="1098000" />
+      <workItem from="1582713104679" duration="1744000" />
     </task>
     <servers />
   </component>

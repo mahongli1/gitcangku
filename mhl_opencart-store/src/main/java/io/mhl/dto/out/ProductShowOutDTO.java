@@ -6,12 +6,12 @@ public class ProductShowOutDTO {
     private Integer productId;
     private String productCode;
     private String productName;
-    private String description;
     private Double price;
     private Double discount;
-    private Integer quantity;
+    private Integer stockQuantity;
     private String mainPicUrl;
     private Integer rewordPoints;
+    private String description;
     private List<String> otherPicUrls;
 
     public Integer getProductId() {
@@ -38,14 +38,6 @@ public class ProductShowOutDTO {
         this.productName = productName;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Double getPrice() {
         return price;
     }
@@ -62,12 +54,12 @@ public class ProductShowOutDTO {
         this.discount = discount;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Integer getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setStockQuantity(Integer stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 
     public String getMainPicUrl() {
@@ -86,6 +78,14 @@ public class ProductShowOutDTO {
         this.rewordPoints = rewordPoints;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public List<String> getOtherPicUrls() {
         return otherPicUrls;
     }
@@ -94,4 +94,3 @@ public class ProductShowOutDTO {
         this.otherPicUrls = otherPicUrls;
     }
 }
-
