@@ -25,7 +25,6 @@ public class ImageController {
 
     @PostMapping("/upload")
     public String upload(@RequestParam MultipartFile image) throws IOException, ClientException {
-
         String originalFilename = image.getOriginalFilename();
         String[] splits = originalFilename.split("\\.");
         String ext = splits[splits.length - 1];
@@ -43,8 +42,6 @@ public class ImageController {
             out.write(data);
         }
         return filename;
-
     }
-
 
 }
