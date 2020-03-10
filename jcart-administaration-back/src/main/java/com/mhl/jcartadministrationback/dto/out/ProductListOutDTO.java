@@ -55,6 +55,14 @@ public class ProductListOutDTO {
         this.discount = discount;
     }
 
+    public Integer getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(Integer stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
     public Byte getStatus() {
         return status;
     }
@@ -69,13 +77,5 @@ public class ProductListOutDTO {
 
     public void setMainPicUrl(String mainPicUrl) {
         this.mainPicUrl = mainPicUrl;
-    }
-
-    public Integer getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(Integer stockQuantity) {
-        this.stockQuantity = stockQuantity;
     }
 }

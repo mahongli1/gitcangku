@@ -6,7 +6,6 @@ package com.mhl.jcartadministrationback.dto.in;
  * @date 2020/2/25 14:35
  */
 public class OrderHistoryCreateInDTO {
-
     private Long orderId;
     private Byte orderStatus;
     private String comment;

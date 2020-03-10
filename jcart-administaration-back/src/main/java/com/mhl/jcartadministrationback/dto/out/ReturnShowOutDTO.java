@@ -160,5 +160,3 @@ public class ReturnShowOutDTO {
         this.updateTimestamp = updateTimestamp;
     }
 }
-
-

@@ -5,13 +5,14 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mhl.jcartadministrationback.dao.ProductDetailMapper;
 import com.mhl.jcartadministrationback.dao.ProductMapper;
-import com.mhl.jcartadministrationback.po.Product;
-import com.mhl.jcartadministrationback.po.ProductDetail;
-import com.mhl.jcartadministrationback.service.ProductService;
 import com.mhl.jcartadministrationback.dto.in.ProductCreateInDTO;
+import com.mhl.jcartadministrationback.dto.in.ProductSearchInDTO;
 import com.mhl.jcartadministrationback.dto.in.ProductUpdateInDTO;
 import com.mhl.jcartadministrationback.dto.out.ProductListOutDTO;
 import com.mhl.jcartadministrationback.dto.out.ProductShowOutDTO;
+import com.mhl.jcartadministrationback.po.Product;
+import com.mhl.jcartadministrationback.po.ProductDetail;
+import com.mhl.jcartadministrationback.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,9 +47,7 @@ public class ProductServiceImpl implements ProductService {
         product.setMainPicUrl(productCreateInDTO.getMainPicUrl());
         product.setRewordPoints(productCreateInDTO.getRewordPoints());
         product.setSortOrder(productCreateInDTO.getSortOrder());
-        String description = productCreateInDTO.getDescription();
-        String productAbstract = description.substring(0, Math.min(100, description.length()));
-        product.setProductAbstract(productAbstract);
+        product.setProductAbstract(productCreateInDTO.getProductAbstract());
         productMapper.insertSelective(product);
 
         Integer productId = product.getProductId();
@@ -66,6 +65,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void update(ProductUpdateInDTO productUpdateInDTO) {
+
         Product product = new Product();
         product.setProductId(productUpdateInDTO.getProductId());
         product.setProductName(productUpdateInDTO.getProductName());
@@ -76,9 +76,7 @@ public class ProductServiceImpl implements ProductService {
         product.setStatus(productUpdateInDTO.getStatus());
         product.setRewordPoints(productUpdateInDTO.getRewordPoints());
         product.setSortOrder(productUpdateInDTO.getSortOrder());
-        String description = productUpdateInDTO.getDescription();
-        String productAbstract = description.substring(0, Math.min(100, description.length()));
-        product.setProductAbstract(productAbstract);
+        product.setProductAbstract(productUpdateInDTO.getProductAbstract());
         productMapper.updateByPrimaryKeySelective(product);
 
         ProductDetail productDetail = new ProductDetail();
@@ -87,6 +85,7 @@ public class ProductServiceImpl implements ProductService {
         List<String> otherPicUrls = productUpdateInDTO.getOtherPicUrls();
         productDetail.setOtherPicUrls(JSON.toJSONString(otherPicUrls));
         productDetailMapper.updateByPrimaryKeySelective(productDetail);
+
     }
 
     @Override
@@ -97,9 +96,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductListOutDTO> search(Integer pageNum) {
+    @Transactional
+    public void batchDelete(List<Integer> productIds) {
+        productMapper.batchDelete(productIds);
+        productDetailMapper.batchDelete(productIds);
+    }
+
+    @Override
+    public Page<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO,
+                                          Integer pageNum) {
         PageHelper.startPage(pageNum, 10);
-        Page<ProductListOutDTO> page = productMapper.search();
+        Page<ProductListOutDTO> page = productMapper
+                .search(productSearchInDTO.getProductCode(),
+                        productSearchInDTO.getStatus(),
+                        productSearchInDTO.getStockQuantity(),
+                        productSearchInDTO.getPrice(),
+                        productSearchInDTO.getProductName());
         return page;
     }
 
@@ -119,6 +131,7 @@ public class ProductServiceImpl implements ProductService {
         productShowOutDTO.setRewordPoints(product.getRewordPoints());
         productShowOutDTO.setSortOrder(product.getSortOrder());
         productShowOutDTO.setStockQuantity(product.getStockQuantity());
+        productShowOutDTO.setProductAbstract(product.getProductAbstract());
 
         productShowOutDTO.setDescription(productDetail.getDescription());
         String otherPicUrlsJson = productDetail.getOtherPicUrls();
@@ -127,6 +140,4 @@ public class ProductServiceImpl implements ProductService {
 
         return productShowOutDTO;
     }
-
-
 }

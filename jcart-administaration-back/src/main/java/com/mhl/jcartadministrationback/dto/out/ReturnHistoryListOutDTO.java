@@ -6,20 +6,11 @@ package com.mhl.jcartadministrationback.dto.out;
  * @date 2020/2/25 14:57
  */
 public class ReturnHistoryListOutDTO {
-
-    private Integer returnHistoryId;
+    private Long returnHistoryId;
     private Long timestamp;
     private Byte returnStatus;
     private String comment;
-    private Byte customerNotified;
-
-    public Integer getReturnHistoryId() {
-        return returnHistoryId;
-    }
-
-    public void setReturnHistoryId(Integer returnHistoryId) {
-        this.returnHistoryId = returnHistoryId;
-    }
+    private Boolean customerNotified;
 
     public Long getTimestamp() {
         return timestamp;
@@ -45,11 +36,19 @@ public class ReturnHistoryListOutDTO {
         this.comment = comment;
     }
 
-    public Byte getCustomerNotified() {
+    public Boolean getCustomerNotified() {
         return customerNotified;
     }
 
-    public void setCustomerNotified(Byte customerNotified) {
+    public void setCustomerNotified(Boolean customerNotified) {
         this.customerNotified = customerNotified;
+    }
+
+    public Long getReturnHistoryId() {
+        return returnHistoryId;
+    }
+
+    public void setReturnHistoryId(Long returnHistoryId) {
+        this.returnHistoryId = returnHistoryId;
     }
 }

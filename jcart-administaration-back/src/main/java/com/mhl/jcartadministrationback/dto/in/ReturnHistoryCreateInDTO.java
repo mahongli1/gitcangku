@@ -27,19 +27,19 @@ public class ReturnHistoryCreateInDTO {
         this.returnStatus = returnStatus;
     }
 
-    public Boolean getCustomerNotified() {
-        return customerNotified;
-    }
-
-    public void setCustomerNotified(Boolean customerNotified) {
-        this.customerNotified = customerNotified;
-    }
-
     public String getComment() {
         return comment;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Boolean getCustomerNotified() {
+        return customerNotified;
+    }
+
+    public void setCustomerNotified(Boolean customerNotified) {
+        this.customerNotified = customerNotified;
     }
 }

@@ -2,9 +2,12 @@ package com.mhl.jcartadministrationback.service;
 
 import com.github.pagehelper.Page;
 import com.mhl.jcartadministrationback.dto.in.ProductCreateInDTO;
+import com.mhl.jcartadministrationback.dto.in.ProductSearchInDTO;
 import com.mhl.jcartadministrationback.dto.in.ProductUpdateInDTO;
 import com.mhl.jcartadministrationback.dto.out.ProductListOutDTO;
 import com.mhl.jcartadministrationback.dto.out.ProductShowOutDTO;
+
+import java.util.List;
 
 /**
  * @author ZMD
@@ -19,7 +22,11 @@ public interface ProductService {
 
     void delete(Integer productId);
 
-    Page<ProductListOutDTO> search(Integer pageNum);
+    void batchDelete(List<Integer> productIds);
+
+    Page<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO,
+                                   Integer pageNum);
 
     ProductShowOutDTO getById(Integer productId);
+
 }

@@ -17,7 +17,6 @@ public class ReturnListOutDTO {
     private Long createTimestamp;
     private Long updateTimestamp;
 
-
     public Integer getReturnId() {
         return returnId;
     }

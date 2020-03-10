@@ -6,10 +6,12 @@ import com.mhl.jcartadministrationback.dao.AdministratorMapper;
 import com.mhl.jcartadministrationback.po.Administrator;
 import com.mhl.jcartadministrationback.service.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class AdministratorServiceImpl implements AdministratorService {
+
     @Autowired
     private AdministratorMapper administratorMapper;
 
@@ -22,6 +24,12 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     public Administrator getByUsername(String username) {
         Administrator administrator = administratorMapper.selectByUsername(username);
+        return administrator;
+    }
+
+    @Override
+    public Administrator getByEmail(String email) {
+        Administrator administrator = administratorMapper.selectByEmail(email);
         return administrator;
     }
 
