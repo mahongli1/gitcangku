@@ -8,6 +8,7 @@ var app = new Vue({
         stockQuantity: '',
         rewordPoints: '',
         sortOrder: '',
+        productAbstract: '',
         description: '',
         selectedStatus: 1,
         selectedMainPic: '',
@@ -20,11 +21,18 @@ var app = new Vue({
             { value: 2, label: '待审核' }
         ],
         mainFileList: [],
-        otherFileList: [],
+        otherFileList: []
+    },
+    mounted() {
+        console.log('view mounted');
+        tinymce.init({
+            selector: '#mytextarea'
+        });
     },
     methods: {
         handleCreateClick() {
             console.log('create click');
+            this.description = tinyMCE.activeEditor.getContent();
             this.createProduct();
         },
         handleOnMainChange(val) {
@@ -79,13 +87,14 @@ var app = new Vue({
                         console.log(response);
                         var url = response.data;
                         app.otherPicUrls.push(url);
-                        alert('上传成功');
                     })
                     .catch(function (error) {
                         console.log(error);
-                        alert('上传失败');
+                        alert('上床失败');
                     });
             });
+
+
         },
         createProduct() {
             axios.post('/product/create', {
@@ -98,13 +107,13 @@ var app = new Vue({
                 mainPicUrl: this.mainPicUrl,
                 rewordPoints: this.rewordPoints,
                 sortOrder: this.sortOrder,
+                productAbstract: this.productAbstract,
                 description: this.description,
                 otherPicUrls: this.otherPicUrls
             })
                 .then(function (response) {
                     console.log(response);
                     alert('创建成功');
-                    location.href = 'product-search.html';
                 })
                 .catch(function (error) {
                     console.log(error);

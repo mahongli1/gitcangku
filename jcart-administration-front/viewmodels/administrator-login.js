@@ -4,13 +4,11 @@ var app = new Vue({
         username: '',
         password: ''
     },
-
     methods: {
-        handleLoginClick() {
+        handleLoginClick(){
             console.log('login click');
-                this.loginAdministrator();
+            this.loginAdministrator();
         },
-       
         loginAdministrator() {
             axios.get('/administrator/login', {
                 params: {

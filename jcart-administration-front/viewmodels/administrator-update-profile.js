@@ -15,9 +15,8 @@ var app = new Vue({
     methods: {
         handleUpdateClick() {
             console.log('update click');
-                this.updateMyProfile();
+            this.updateMyProfile();
         },
-       
         getMyProfile() {
             axios.get('/administrator/getProfile')
                 .then(function (response) {

@@ -13,8 +13,9 @@ var app = new Vue({
             { value: 1, label: '启用' }
         ]
     },
-    mounted() {
+    mounted(){
         console.log('view mounted');
+
         var url = new URL(location.href);
         this.administratorId = url.searchParams.get("administratorId");
         if (!this.administratorId) {
@@ -29,7 +30,6 @@ var app = new Vue({
             console.log('update click');
             this.updateAdministrator();
         },
-       
         getAdministratorById(){
             axios.get('/administrator/getById', {
                 params: {

@@ -11,16 +11,14 @@ var app = new Vue({
             { value: 0, label: '禁用' },
             { value: 1, label: '启用' }
         ],
-        
     },
     methods: {
-        handleCreateClick() {
+        handleCreateClick(){
             console.log('create click');
             this.createAdministrator();
         },
-        
         createAdministrator() {
-            axios.post('/administrator/create',{
+            axios.post('/administrator/create', {
                 username: this.username,
                 password: this.password,
                 realName: this.realName,
@@ -28,17 +26,13 @@ var app = new Vue({
                 avatarUrl: this.avatarUrl,
                 status: this.selectedStatus
             })
-            
                 .then(function (response) {
                     console.log(response);
-                    alert('上传成功');
+                    alert('创建成功');
                 })
                 .catch(function (error) {
                     console.log(error);
-                    alert('上传失败');
                 });
         }
-        
-        
     }
 })

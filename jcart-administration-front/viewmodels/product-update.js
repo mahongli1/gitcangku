@@ -9,6 +9,7 @@ var app = new Vue({
         stockQuantity: '',
         rewordPoints: '',
         sortOrder: '',
+        productAbstract: '',
         description: '',
         selectedStatus: 1,
         selectedMainPic: '',
@@ -25,48 +26,21 @@ var app = new Vue({
     },
     mounted() {
         console.log('view mounted');
-        tinymce.init({
-            selector:'#mytextarea'
-        })
+
         var url = new URL(location.href);
         this.productId = url.searchParams.get("productId");
         if (!this.productId) {
-            alert('productId is null(商品id不存在)');
+            alert('productId is null');
             return;
         }
 
         this.getProductById();
     },
     methods: {
-        getProductById() {
-            axios.get('/product/getById', {
-                params: {
-                    productId: this.productId
-                }
-            })
-                .then(function (response) {
-                    console.log(response);
-                    var product = response.data;
-                    app.productId = product.productId;
-                    app.productCode = product.productCode;
-                    app.productName = product.productName;
-                    app.price = product.price;
-                    app.discount = product.discount;
-                    app.stockQuantity = product.stockQuantity;
-                    app.selectedStatus = product.status;
-                    app.rewordPoints = product.rewordPoints;
-                    app.sortOrder = product.sortOrder;
-                    app.mainPicUrl = product.mainPicUrl;
-                    app.description = product.description;
-                    app.otherPicUrls = product.otherPicUrls;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        },
-        handleCreateClick() {
-            console.log('create click');
-            this.createProduct();
+        handleUpdateClick() {
+            console.log('update click');
+            this.description = tinyMCE.activeEditor.getContent();
+            this.updateProduct();
         },
         handleOnMainChange(val) {
             this.selectedMainPic = val.raw;
@@ -120,16 +94,16 @@ var app = new Vue({
                         console.log(response);
                         var url = response.data;
                         app.otherPicUrls.push(url);
-                        alert('上传成功');
                     })
                     .catch(function (error) {
                         console.log(error);
-                        alert('上传失败');
+                        alert('上床失败');
                     });
             });
-        },
 
-        handleUpdateClick(){
+
+        },
+        updateProduct() {
             axios.post('/product/update', {
                 productId: this.productId,
                 productName: this.productName,
@@ -140,19 +114,47 @@ var app = new Vue({
                 mainPicUrl: this.mainPicUrl,
                 rewordPoints: this.rewordPoints,
                 sortOrder: this.sortOrder,
+                productAbstract: this.productAbstract,
                 description: this.description,
                 otherPicUrls: this.otherPicUrls
             })
                 .then(function (response) {
                     console.log(response);
                     alert('修改成功');
-                    location.href = 'product-search.html';
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        getProductById() {
+            axios.get('/product/getById', {
+                params: {
+                    productId: this.productId
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    var product = response.data;
+                    app.productId = product.productId;
+                    app.productCode = product.productCode;
+                    app.productName = product.productName;
+                    app.price = product.price;
+                    app.discount = product.discount;
+                    app.stockQuantity = product.stockQuantity;
+                    app.selectedStatus = product.status;
+                    app.rewordPoints = product.rewordPoints;
+                    app.sortOrder = product.sortOrder;
+                    app.mainPicUrl = product.mainPicUrl;
+                    app.productAbstract = product.productAbstract;
+                    app.description = product.description;
+                    tinymce.init({
+                        selector: '#mytextarea'
+                    });
+                    app.otherPicUrls = product.otherPicUrls;
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
-
-        
-    },
+    }
 })
