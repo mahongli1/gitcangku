@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/returnhistory")
+@CrossOrigin
 public class ReturnHistoryController {
-
 
     @Autowired
     private ReturnHistoryService returnHistoryService;
@@ -58,6 +58,5 @@ public class ReturnHistoryController {
 
         return returnHistoryId;
     }
-
 
 }

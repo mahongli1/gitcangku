@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/return")
+@CrossOrigin
 public class ReturnController {
 
     @Autowired
@@ -88,9 +89,5 @@ public class ReturnController {
         aReturn.setUpdateTime(new Date());
         returnService.update(aReturn);
     }
-
-
-
-
 
 }

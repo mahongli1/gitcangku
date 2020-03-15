@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/orderhistory")
+@CrossOrigin
 public class OrderHistoryController {
 
     @Autowired
@@ -52,6 +53,5 @@ public class OrderHistoryController {
         Long orderHistoryId = orderHistoryService.create(orderHistory);
         return orderHistoryId;
     }
-
 
 }

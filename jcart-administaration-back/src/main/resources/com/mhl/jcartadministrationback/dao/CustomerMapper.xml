@@ -18,11 +18,11 @@
     <result column="default_address_id" jdbcType="INTEGER" property="defaultAddressId" />
   </resultMap>
   <sql id="Base_Column_List">
-    customer_id, username, real_name, avatar_url, encrypted_password, mobile, mobile_verified, 
+    customer_id, username, real_name, avatar_url, encrypted_password, mobile, mobile_verified,
     email, email_verified, status, create_time, news_subscribed, reword_points, default_address_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from jcart_customer
     where customer_id = #{customerId,jdbcType=INTEGER}
@@ -32,15 +32,15 @@
     where customer_id = #{customerId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.mhl.jcartadministrationback.po.Customer">
-    insert into jcart_customer (customer_id, username, real_name, 
-      avatar_url, encrypted_password, mobile, 
-      mobile_verified, email, email_verified, 
-      status, create_time, news_subscribed, 
+    insert into jcart_customer (customer_id, username, real_name,
+      avatar_url, encrypted_password, mobile,
+      mobile_verified, email, email_verified,
+      status, create_time, news_subscribed,
       reword_points, default_address_id)
-    values (#{customerId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
-      #{avatarUrl,jdbcType=VARCHAR}, #{encryptedPassword,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
-      #{mobileVerified,jdbcType=BIT}, #{email,jdbcType=VARCHAR}, #{emailVerified,jdbcType=BIT}, 
-      #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{newsSubscribed,jdbcType=BIT}, 
+    values (#{customerId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
+      #{avatarUrl,jdbcType=VARCHAR}, #{encryptedPassword,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+      #{mobileVerified,jdbcType=BIT}, #{email,jdbcType=VARCHAR}, #{emailVerified,jdbcType=BIT},
+      #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{newsSubscribed,jdbcType=BIT},
       #{rewordPoints,jdbcType=INTEGER}, #{defaultAddressId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.mhl.jcartadministrationback.po.Customer">
@@ -196,4 +196,29 @@
       default_address_id = #{defaultAddressId,jdbcType=INTEGER}
     where customer_id = #{customerId,jdbcType=INTEGER}
   </update>
+
+  <!--  custom-->
+  <select id="search" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jcart_customer
+    <where>
+      <if test="username != null and username != ''">
+        username = #{username}
+      </if>
+      <if test="mobile != null and mobile != ''">
+        AND mobile = #{mobile}
+      </if>
+      <if test="email != null and email != ''">
+        AND email = #{email}
+      </if>
+      <if test="status != null">
+        AND status = #{status}
+      </if>
+      <if test="realName != null and realName != ''">
+        AND real_name like concat('%',#{realName},'%')
+      </if>
+    </where>
+  </select>
+
 </mapper>

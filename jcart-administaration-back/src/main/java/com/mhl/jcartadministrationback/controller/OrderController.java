@@ -5,10 +5,7 @@ import com.mhl.jcartadministrationback.dto.in.OrderSearchInDTO;
 import com.mhl.jcartadministrationback.dto.out.*;
 import com.mhl.jcartadministrationback.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author ZMD
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/order")
+@CrossOrigin
 public class OrderController {
 
     @Autowired
@@ -42,23 +40,14 @@ public class OrderController {
         return orderShowOutDTO;
     }
 
-    @GetMapping("/getInvoice")
-    public OrderInvoiceShowOutDTO getInvoice(@RequestParam Long OrderId){
+    @GetMapping("/getInvoiceInfo")
+    public OrderInvoiceShowOutDTO getInvoiceInfo(@RequestParam Long orderId) {
         return null;
     }
-
 
     @GetMapping("/getShipInfo")
-    public OrderShipShowOutDTO getShipInfo(@RequestParam Long OrderId){
+    public OrderShipShowOutDTO getShipInfo(@RequestParam Long orderId) {
         return null;
     }
-
-
-
-
-
-
-
-
 
 }

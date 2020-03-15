@@ -13,7 +13,7 @@
     address_id, customer_id, receiver_name, receiver_mobile, content, tag
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from jcart_address
     where address_id = #{addressId,jdbcType=INTEGER}
@@ -23,10 +23,10 @@
     where address_id = #{addressId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.mhl.jcartadministrationback.po.Address">
-    insert into jcart_address (address_id, customer_id, receiver_name, 
+    insert into jcart_address (address_id, customer_id, receiver_name,
       receiver_mobile, content, tag
       )
-    values (#{addressId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, 
+    values (#{addressId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR},
       #{receiverMobile,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}
       )
   </insert>
@@ -103,4 +103,12 @@
       tag = #{tag,jdbcType=VARCHAR}
     where address_id = #{addressId,jdbcType=INTEGER}
   </update>
+
+  <!--  custom-->
+  <select id="selectByCustomerId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jcart_address
+    where customer_id = #{customerId}
+  </select>
 </mapper>
